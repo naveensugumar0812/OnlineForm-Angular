@@ -1,0 +1,36 @@
+<div class="container">
+    <h2 class="text-center">Please send us some feedback using the form below</h2>
+    <div *ngIf='successMessage' class="alert alert-success alert-dismissible fade show" role="alert" (click)="closeAlert()">
+        <strong>Feedback submitted successfully </strong>
+    </div>
+    <div *ngIf='errorMessage' class="alert alert-danger alert-dismissible fade show" role="alert" (click)="closeAlert()">
+       <!-- {{errorinfo.error}}-->
+        <li *ngFor="let errMsg of errorinfo;">
+            <strong>{{errMsg}}</strong>
+        </li> 
+    </div>
+    <form (ngSubmit)="onSubmit()" [formGroup]="feedbackFormGroup">
+        <div class="form-group">
+            <label for="name"><strong>Name : </strong></label>
+            <input type="text" class="form-control" formControlName="name">
+        </div>
+        <div class="form-group">
+            <label for="emailAddress"><strong>Email Address : </strong></label>
+            <input type="text" class="form-control" formControlName="emailAddress">
+        </div>
+        <div class="form-group">
+            <label for="contactType"><strong>Contact Type* : </strong></label>
+            <mat-radio-group formControlName="contactType">
+                <mat-radio-button value="general">General</mat-radio-button>
+                <mat-radio-button value="marketing">Marketing</mat-radio-button>
+                <mat-radio-button value="support">Support</mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <div class="form-group">
+            <label for="message"><strong>Message* : </strong></label>
+            <input type="text" class="form-control" formControlName="message">
+        </div>
+
+        <button class="btn btn-success mt-2" type="submit">Submit</button>
+    </form>
+</div>
